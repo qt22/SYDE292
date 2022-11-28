@@ -37,22 +37,45 @@ format compact
 % ylim([-100 10])
 % title('Bode Plot of an RLC band pass filter')
 
-% Passive filters - high order pass
+% % Active filters - high order pass
+% 
+% r1 = 2.47e3;
+% r2 = 2.47e3;
+% c1 = 0.033e-6;
+% 
+% freq_vec = 1e2:1:1e6;
+% w = freq_vec * 2 * pi;
+% w0 = 1990*pi;
+% 
+% gain = 20*log10(((-r2/r1) ./(1+j*w*r2*c1)).^3);
+% 
+% figure(1); 
+% semilogx(freq_vec, gain);
+% text(w0/(2*pi), -3, "\leftarrow center frequency");
+% xlabel('frequency (Hz)');
+% ylabel('gain (dB)');
+% ylim([-100 10])
+% title('Bode Plot of an RLC band pass filter')
 
-r1 = 2.47e3;
-r2 = 2.47e3;
-c1 = 0.033e-6;
+% Active filters - bandpass
 
-freq_vec = 1e2:1:1e6;
+rl = 20e3;
+rh = 20e3;
+c1 = 798e-12;
+c2 = 80e-9;
+rf = 9.9e3;
+ri = 1e3;
+
+freq_vec = 1:1:1e6;
 w = freq_vec * 2 * pi;
-w0 = 1990*pi;
+w0 = 6283.2;
 
-gain = 20*log10(((-r2/r1) ./(1+j*w*r2*c1)).^3);
+gain = 20*log10((-rf/ri) .* (1./(1+j*w*rl*c1)) .* (j*w*c2*rh ./(1 + j*w*c2*rh)) );
 
 figure(1); 
 semilogx(freq_vec, gain);
-text(w0/(2*pi), -3, "\leftarrow center frequency");
+text(w0/(2*pi), 20, "\leftarrow center frequency");
 xlabel('frequency (Hz)');
 ylabel('gain (dB)');
-ylim([-100 10])
-title('Bode Plot of an RLC band pass filter')
+ylim([-30 30])
+title('Bode Plot of an active band pass filter')
