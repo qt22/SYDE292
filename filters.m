@@ -81,22 +81,21 @@ title('Bode Plot of a 5th order active low pass filter')
 % ylim([-30 30])
 % title('Bode Plot of an active band pass filter')
 
-% % Assignment 5 question 1 - RLC low pass filter
-% 
-% rl = 0.25;
-% c1 = 1;
-% l1 = 1;
-% 
-% freq_vec = 1e-2:0.01:1e2;
-% w = freq_vec * 2 * pi;
-% w0 = 1;
-% 
-% gain = 20*log10( 0.25 ./ (0.25 - 0.25*w.^2 + j*w) );
-% 
-% figure(1); 
-% semilogx(freq_vec, gain);
-% % text(w0/(2*pi), -3, "\leftarrow center frequency");
-% xlabel('Frequency (Hz)');
-% ylabel('Gain (dB)');
-% % ylim([0 -100])
-% title('Bode Plot of an RLC low pass filter')
+% Assignment 5 question 1 - RLC low pass filter
+
+rl = 0.25;
+c1 = 1;
+l1 = 1;
+
+freq_vec = 1e-2:0.01:1e2;
+w = freq_vec * 2 * pi;
+w0 = 1;
+
+gain = 20*log10( 0.25 ./ (0.25 - 0.25*w.^2 + j*w) );
+
+figure(2); 
+semilogx(freq_vec, gain);
+% text(w0/(2*pi), -3, "\leftarrow center frequency");
+xlabel('Frequency (Hz)');
+ylabel('Gain (dB)')
+title('Bode Plot of an RLC low pass filter')
